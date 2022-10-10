@@ -391,6 +391,9 @@ nbtscan $TARGET
 smbver.sh $TARGET &lt;139/445&gt;
 hydra -t 1 -V -f -l {Username} -P {Big_Passwordlist} {IP} smb
 </code></pre>
+<pre><code>ngrep -i -d tun0 's.?a.?m.?b.?a.*[[:digit:]]' port 139
+smbmap -H &lt;ip&gt; -u '' -p '' -P 139 
+</code></pre>
 <h3 id="crackmapexec"><a class="header" href="#crackmapexec">crackmapexec</a></h3>
 <pre><code>crackmapexec smb {IP}
 crackmapexec smb {IP} --pass-pol -u &quot;&quot; -p &quot;&quot;
