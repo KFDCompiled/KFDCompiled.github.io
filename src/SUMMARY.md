@@ -18,6 +18,7 @@
 * [WebApp](enumeration/webapp/README.md)
   * [Wordpress](enumeration/webapp/wordpress.md)
   * [SQLi](enumeration/webapp/sqli.md)
+  * [Utilities](enumeration/webapp/utilities.md)
 * [Active Directory](enumeration/active-directory/README.md)
   * [Devices](enumeration/active-directory/devices.md)
   * [Domain](enumeration/active-directory/domain.md)
