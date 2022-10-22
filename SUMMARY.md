@@ -29,8 +29,8 @@
 ## EXPLOIT
 
 * [Find, Fix, Finish](exploit/find-fix-finish.md)
-* [Privilege Escalation](exploit/privilege-escalation.md)
-* [Windows](exploit/windows.md)
+* [Privilege Escalation](exploit/privilege-escalation/README.md)
+  * [Windows](exploit/privilege-escalation/windows.md)
 
 ## POSTEXPLOITATION
 

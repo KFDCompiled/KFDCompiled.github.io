@@ -1,8 +1,8 @@
 # Methodology Overview
 
 1. [Reconnaissance](recon/active-scanning.md)
-2. [Enumeration](enumeration/services/)
-3. Exploitation
-4. Privilege Escalation
-5. Post-Exploitation
-6. Critical Information Requirements
+2. [Enumeration](broken-reference)
+3. [Exploitation](exploit/find-fix-finish.md)
+4. [Privilege Escalation](exploit/privilege-escalation/)
+5. [Post-Exploitation](broken-reference)
+6. [Critical Information Requirements](postexploitation/loot.md)
